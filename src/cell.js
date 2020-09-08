@@ -1,5 +1,5 @@
-const rows = 10
-const columns = 10
+const rows = 4
+const columns = 4
 let grid = [];
 
 class Cell {
