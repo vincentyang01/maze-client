@@ -68,6 +68,7 @@ function checkWin() {
     console.log("WON");
     play = false;
     stopTimer()
+    sendScore(time)
   }
 }
 
@@ -103,6 +104,9 @@ function startTimer() {
 }
 
 function stopTimer() {
-  clearTimeout(clock)
+  let timer = document.getElementById("timer")
+  let time = parseInt(timer.innerText)
+  clearTimeout()
+  return time
 }
 
