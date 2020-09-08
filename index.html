@@ -4,29 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Mod 3 Project</title>
-  <script type="text/javascript" src="src/p5.min.js"></script>
-
-
-  <!-- <script type="text/javascript" src="p5.sound.js"></script> -->
-
-  <script type="text/javascript" src="src/index.js"></script>
-  <script type="text/javascript" src="src/fetchAdapter.js"></script>
-  <script type="text/javascript" src="src/sketch.js"></script>
-  <script type="text/javascript" src="src/cell.js"></script>
-
-  <style>
-    body {
-      padding: 20px;
-      margin: 0;
-    }
-
-    canvas {
-      vertical-align: top;
-    }
-  </style>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/app.css">
 </head>
 
 <body>
+  <div class="navbar">
+    <button class="generate-maze">Generate New Maze</button>
+    <div class="visualize-maze">Visualize Maze Generator<button class="checkbox"><i class="fas fa-check"></i></button>
+    </div>
+  </div>
+
+
 </body>
+
+<script type="text/javascript" src="/src/fetchAdapter.js"></script>
+<script type="text/javascript" src="/src/index.js" defer></script>
+<script type="text/javascript" src="/src/cell.js" defer></script>
+<script type="text/javascript" src="/src/maze-generator.js" defer></script>
+<script type="text/javascript" src="/src/gameplay.js" defer></script>
 
 </html>
