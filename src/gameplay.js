@@ -49,9 +49,9 @@ checkbox.addEventListener("click", function () {
 
 document.body.addEventListener("keydown", function (e) {
   if (play) {
-    
+
     cells[current.row * columns + current.column].innerHTML = ``;
-    if(!startTimerFlag){
+    if (!startTimerFlag) {
       startTimer()
     }
     if (e.key === "ArrowUp") upArrowPressed();
@@ -86,7 +86,8 @@ function rightArrowPressed() {
 function downArrowPressed() {
   if (!current.walls[2]) current = grid[(current.row + 1) * columns + current.column];
 }
-function resetTimer(){
+
+function resetTimer() {
   document.getElementById("timer").innerText = "60s"
   startTimerFlag = false
 }
@@ -95,7 +96,7 @@ function startTimer() {
   startTimerFlag = true
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
-  clock = setInterval(function(){
+  clock = setInterval(function () {
     time -= 1
     console.log(time)
     timer.innerText = time + "s"
@@ -105,4 +106,3 @@ function startTimer() {
 function stopTimer() {
   clearTimeout(clock)
 }
-
