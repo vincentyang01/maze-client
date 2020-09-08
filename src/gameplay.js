@@ -12,10 +12,13 @@ let play = false;
 let goal = grid[rows * columns - 1];
 let visualizer = setInterval(animate, 20);
 let showMazeGeneration = true;
+let startTimerFlag = false;
+let clock;
 
 let btn = document.querySelector(".generate-maze");
 btn.addEventListener("click", function () {
   clearInterval(visualizer);
+  resetTimer()
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       cells[i * columns + j].removeAttribute("style");
@@ -46,8 +49,11 @@ checkbox.addEventListener("click", function () {
 
 document.body.addEventListener("keydown", function (e) {
   if (play) {
-    cells[current.row * columns + current.column].innerHTML = `
-      `;
+    
+    cells[current.row * columns + current.column].innerHTML = ``;
+    if(!startTimerFlag){
+      startTimer()
+    }
     if (e.key === "ArrowUp") upArrowPressed();
     if (e.key === "ArrowLeft") leftArrowPressed();
     if (e.key === "ArrowRight") rightArrowPressed();
@@ -61,6 +67,7 @@ function checkWin() {
   if (current === goal) {
     console.log("WON");
     play = false;
+    stopTimer()
   }
 }
 
@@ -79,3 +86,23 @@ function rightArrowPressed() {
 function downArrowPressed() {
   if (!current.walls[2]) current = grid[(current.row + 1) * columns + current.column];
 }
+function resetTimer(){
+  document.getElementById("timer").innerText = "60s"
+  startTimerFlag = false
+}
+
+function startTimer() {
+  startTimerFlag = true
+  let timer = document.getElementById("timer")
+  let time = parseInt(timer.innerText)
+  clock = setInterval(function(){
+    time -= 1
+    console.log(time)
+    timer.innerText = time + "s"
+  }, 1000)
+}
+
+function stopTimer() {
+  clearTimeout(clock)
+}
+
