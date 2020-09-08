@@ -38,6 +38,7 @@ fetch("http://localhost:3000/users/findby", options)
 
 function renderUser(success) {
     h1.innerText = success.name
+    h1.dataset.id = success.user_id
 }
 
 
@@ -46,15 +47,16 @@ function renderUser(success) {
 
 
 
-function sendScore(time){
+function sendScore(time, id){
+    
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             "accept": "application/json"
         },
-    body: JSON.stringify({ user_id: this.id, value: time })
+    body: JSON.stringify({ user_id: id, value: time })
     }
 fetch("http://localhost:3000/scores", options)
-.then(res => res.json())
+// .then(res => res.json())
 }

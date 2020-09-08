@@ -14,6 +14,7 @@ let visualizer = setInterval(animate, 20);
 let showMazeGeneration = true;
 let startTimerFlag = false;
 let clock;
+let user = document.getElementById("current-user")
 
 let btn = document.querySelector(".generate-maze");
 btn.addEventListener("click", function () {
@@ -68,7 +69,6 @@ function checkWin() {
     console.log("WON");
     play = false;
     stopTimer()
-    sendScore(time)
   }
 }
 
@@ -105,8 +105,14 @@ function startTimer() {
 }
 
 function stopTimer() {
+  clearTimeout(clock)
+  console.log("def here")
+  packScore()
+}
+
+function packScore() {
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
-  clearTimeout()
-  return time
+  let userId = parseInt(user.dataset.id)
+  sendScore(time, userId)
 }
