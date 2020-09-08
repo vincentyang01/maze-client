@@ -1,3 +1,5 @@
+const h1 = document.getElementById("current-user")
+
 class FetchAdapter {
     constructor(baseUrl){
         this.baseUrl = baseUrl;
@@ -25,13 +27,18 @@ function findOrCreateBy(input) {
     }
 fetch("http://localhost:3000/users/findby", options)
 .then(res => res.json())
-.then(Success => console.log(Success))
-.then(Success => {
+.then(success => {
+    console.log(success)
     overlay.style.display = "none"
-    // debugger
+    renderUser(success)
 })
+
 }
 
+
+function renderUser(success) {
+    h1.innerText = success.name
+}
 
 
 
