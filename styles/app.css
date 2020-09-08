@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell {
+  height: 35px;
+  width: 35px;
+  border: 3px solid rgb(0, 45, 114);
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
