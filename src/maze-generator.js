@@ -42,7 +42,7 @@ function MazeGenerator() {
   } else {
     clearInterval(visualizer);
     play = true;
-    cells[current.row * columns + current.column].style.background = "rgb: 255, 89, 16";
+    cells[current.row * columns + current.column].style.background = "rgb(255, 89, 16)";
     cells[goal.row * columns + goal.column].innerHTML = virus;
     cells[current.row * columns + current.column].innerHTML = vaccine;
   }

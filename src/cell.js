@@ -37,7 +37,7 @@ class Cell {
       cells[this.row * columns + this.column].style["border-left"] = "none";
 
     if (this.visited)
-      cells[this.row * columns + this.column].style.background = "coral";
+      cells[this.row * columns + this.column].style.background = "rgb(255, 89, 16)";
   }
 }
 
