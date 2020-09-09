@@ -21,7 +21,7 @@ const createOverlayForm = () => {
 
     form.setAttribute("id", "login");
     form.innerHTML = `
-        <input type="text" id="username" placeholder="Enter Username"><br><br>
+        <input type="text" id="username" placeholder="Enter Username">
         <button id="login-btn"> Continue </button>
     `
 
@@ -33,8 +33,7 @@ function login() {
     const loginButton = document.getElementById("login-btn")
     loginButton.addEventListener("click", (e) => {
         e.preventDefault()
-        const button = e.target
-        let input = button.previousElementSibling.previousElementSibling.previousElementSibling.value
+        let input = document.querySelector('#username').value
         let obj = findOrCreateBy(input)
     })
 }

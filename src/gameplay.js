@@ -43,11 +43,11 @@ btn.addEventListener("click", function () {
   }
 });
 
-let checkbox = document.querySelector(".checkbox");
-checkbox.addEventListener("click", function () {
-  if (checkbox.innerHTML.includes("check"))
-    checkbox.innerHTML = `<i class="fas fa-times"></i>`;
-  else checkbox.innerHTML = `<i class="fas fa-check"></i>`;
+let generator = document.querySelector(".generator");
+generator.addEventListener("click", function () {
+  if (generator.textContent.includes("Yes"))
+    generator.textContent = "Not Now";
+  else generator.textContent = "Heck Yes!";
   showMazeGeneration = !showMazeGeneration;
 });
 
