@@ -140,7 +140,6 @@ function packScore() {
   let max = parseInt(maxScoreStr[4])
   if (time > max) {
     maxScore.innerText = `Your current high score is: ${time}`
-    debugger
   }
   getNewMaxScore(userId)
   console.log("Is this reaching?")
@@ -168,6 +167,5 @@ function renderGamesPlayed(count) {
 }
 
 function renderTotalScore(total) {
-  // debugger
   totalScore.innerText = `Total score is: ${total}`
 }

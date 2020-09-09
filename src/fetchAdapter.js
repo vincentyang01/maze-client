@@ -105,7 +105,6 @@ function searchMaxScore(id) {
         .then(res => res.json())
         .then(Success => {
             console.log("response in searchMaxScore")
-            debugger
             console.log(Success.value)
             renderMaxScore(Success.value)
         })
