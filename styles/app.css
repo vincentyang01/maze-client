@@ -32,8 +32,8 @@ body {
   z-index: 10;
   position: absolute;
   background-color: white;
-  text-align:center;
-  display:block;
+  text-align: center;
+  display: block;
 }
 
 #login{

@@ -15,7 +15,6 @@ function login() {
         const button = e.target
         let input = button.previousElementSibling.previousElementSibling.previousElementSibling.value
         let obj = findOrCreateBy(input)
-        // debugger
     })
 }
 
