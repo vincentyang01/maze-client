@@ -10,10 +10,9 @@ const vaccine = `
 `;
 let play = false;
 let goal = grid[rows * columns - 1];
-let visualizer = setInterval(animate, 20);
+let visualizer = setInterval(animate, 50);
 let showMazeGeneration = true;
 let startTimerFlag = false;
-let newPlayer = false
 let clock;
 let user = document.getElementById("current-user")
 let maxScore = document.getElementById("max-score")
@@ -54,7 +53,7 @@ checkbox.addEventListener("click", function () {
 
 document.body.addEventListener("keydown", function (e) {
   if (play && overlay.style.display == "none") {
-    
+
     cells[current.row * columns + current.column].innerHTML = ``;
     if (!startTimerFlag) {
       startTimer()
@@ -102,12 +101,12 @@ function startTimer() {
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
   clock = setInterval(function () {
-    if(time > 0){
+    if (time > 0) {
       time -= 1
       console.log(time)
       timer.innerText = time + "s"
     }
-    if(time == 0){
+    if (time == 0) {
       play = false
       // btn.click()
     }
@@ -139,35 +138,36 @@ function packScore() {
 
   let maxScoreStr = maxScore.innerText.split(" ")
   let max = parseInt(maxScoreStr[4])
-  if (time > max && !newPlayer){
+  if (time > max) {
     maxScore.innerText = `Your current high score is: ${time}`
+    debugger
   }
   getNewMaxScore(userId)
   console.log("Is this reaching?")
 }
 
 
-function renderNewMaxScore(newHighscore){
+function renderNewMaxScore(newHighscore) {
   console.log(`we here ${newHighscore}`)
-  maxScore.innerText = `Your current high score: ${newHighscore}` 
+  maxScore.innerText = `Your current high score: ${newHighscore}`
 
 }
 
 
 
-function renderMaxScore(highscore){
-  if(highscore == undefined){
+function renderMaxScore(highscore) {
+  if (highscore == undefined) {
     maxScore.innerText = `Your current high score: 0`
-  } else {     
-    maxScore.innerText = `Your current high score: ${highscore}` 
+  } else {
+    maxScore.innerText = `Your current high score: ${highscore}`
   }
 }
 
-function renderGamesPlayed(count){
+function renderGamesPlayed(count) {
   gamesPlayed.innerText = `Number of games played: ${count}`
 }
 
-function renderTotalScore(total){
+function renderTotalScore(total) {
   // debugger
   totalScore.innerText = `Total score is: ${total}`
 }
