@@ -15,6 +15,9 @@ let showMazeGeneration = true;
 let startTimerFlag = false;
 let clock;
 let user = document.getElementById("current-user")
+let maxScore = document.getElementById("max-score")
+let gamesPlayed = document.getElementById("games-played")
+let totalScore = document.getElementById("total-score")
 
 let btn = document.querySelector(".generate-maze");
 btn.addEventListener("click", function () {
@@ -49,8 +52,13 @@ checkbox.addEventListener("click", function () {
 });
 
 document.body.addEventListener("keydown", function (e) {
+<<<<<<< Updated upstream
   if (play) {
 
+=======
+  if (play && overlay.style.display == "none") {
+    
+>>>>>>> Stashed changes
     cells[current.row * columns + current.column].innerHTML = ``;
     if (!startTimerFlag) {
       startTimer()
@@ -115,4 +123,27 @@ function packScore() {
   let time = parseInt(timer.innerText)
   let userId = parseInt(user.dataset.id)
   sendScore(time, userId)
+
+
+  
+  patchTotalPoints(time, userId, totalScore);
+  totalScore.innerText = `Total score is: ${totalScore}`
+
+}
+
+
+function renderMaxScore(highscore){
+  if(highscore == undefined){
+    maxScore.innerText = `Your current high score: 0`
+  } else {     
+    maxScore.innerText = `Your current high score: ${highscore}` 
+  }
+}
+
+function renderGamesPlayed(count){
+  gamesPlayed.innerText = `Number of games played: ${count}`
+}
+
+function renderTotalScore(total){
+  totalScore.innerText = `Total score is: ${total}`
 }
