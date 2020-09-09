@@ -32,7 +32,7 @@ function findOrCreateBy(input) {
         let id = success.user_id
         searchMaxScore(id)
         searchGamesPlayed(id)
-        console.log("Hello")
+        
         searchTotalScore(id)
     })
 }
@@ -56,6 +56,7 @@ function sendScore(time, id){
         },
     body: JSON.stringify({ user_id: id, value: time })
     }
+    console.log(`sending score ${time}`)
 fetch("http://localhost:3000/scores", options)
 }
 
@@ -75,12 +76,18 @@ function patchTotalPoints(time, id, totalScore){
     }
 
 fetch("http://localhost:3000/users/" + `${id}`, options)
-// .then(res => totalScore.innerText = `Total score is: ${totalScore}`)
-// .then(res => res.json())
-// .then(data => {
-//     debugger
-//     totalScore.innerText = `Total score is: ${data.totalscore}`
-// })
+}
+
+////////////////////////////////////////////////////////////////
+
+function getNewMaxScore(id){
+
+fetch("http://localhost:3000/scores/maxscore/" + `${id}`)
+.then(res => res.json())
+.then(hello => {
+    console.log("in patch newmax")
+    renderNewMaxScore(hello.value)
+})
 }
 
 ////////////////////////////////////////////////////////////////
@@ -115,6 +122,7 @@ function searchTotalScore(id){
     .then(res => res.json())
     .then(Success => {
         console.log("Inside searchTotalScore")
+        // debugger
         console.log(Success.value)
         renderTotalScore(Success.value)
     })
