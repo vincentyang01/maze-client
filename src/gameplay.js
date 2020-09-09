@@ -13,6 +13,7 @@ let goal = grid[rows * columns - 1];
 let visualizer = setInterval(animate, 20);
 let showMazeGeneration = true;
 let startTimerFlag = false;
+let newPlayer = false
 let clock;
 let user = document.getElementById("current-user")
 let maxScore = document.getElementById("max-score")
@@ -52,13 +53,8 @@ checkbox.addEventListener("click", function () {
 });
 
 document.body.addEventListener("keydown", function (e) {
-<<<<<<< Updated upstream
-  if (play) {
-
-=======
   if (play && overlay.style.display == "none") {
     
->>>>>>> Stashed changes
     cells[current.row * columns + current.column].innerHTML = ``;
     if (!startTimerFlag) {
       startTimer()
@@ -106,9 +102,15 @@ function startTimer() {
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
   clock = setInterval(function () {
-    time -= 1
-    console.log(time)
-    timer.innerText = time + "s"
+    if(time > 0){
+      time -= 1
+      console.log(time)
+      timer.innerText = time + "s"
+    }
+    if(time == 0){
+      play = false
+      // btn.click()
+    }
   }, 1000)
 }
 
@@ -116,6 +118,7 @@ function stopTimer() {
   clearTimeout(clock)
   console.log("def here")
   packScore()
+  newPlayer = true
 }
 
 function packScore() {
@@ -124,12 +127,32 @@ function packScore() {
   let userId = parseInt(user.dataset.id)
   sendScore(time, userId)
 
-
-  
   patchTotalPoints(time, userId, totalScore);
-  totalScore.innerText = `Total score is: ${totalScore}`
+  let currString = totalScore.innerText.split(" ")
+  let num = parseInt(currString[3]) + time
+  totalScore.innerText = `Total score is: ${num}`
+
+  let gamesStr = gamesPlayed.innerText.split(" ")
+  let game = parseInt(gamesStr[4])
+  game++
+  gamesPlayed.innerText = `Number of games played: ${game}`
+
+  let maxScoreStr = maxScore.innerText.split(" ")
+  let max = parseInt(maxScoreStr[4])
+  if (time > max && !newPlayer){
+    maxScore.innerText = `Your current high score is: ${time}`
+  }
+  getNewMaxScore(userId)
+  console.log("Is this reaching?")
+}
+
+
+function renderNewMaxScore(newHighscore){
+  console.log(`we here ${newHighscore}`)
+  maxScore.innerText = `Your current high score: ${newHighscore}` 
 
 }
+
 
 
 function renderMaxScore(highscore){
@@ -145,5 +168,6 @@ function renderGamesPlayed(count){
 }
 
 function renderTotalScore(total){
+  // debugger
   totalScore.innerText = `Total score is: ${total}`
 }
