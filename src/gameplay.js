@@ -10,7 +10,7 @@ const vaccine = `
 `;
 let play = false;
 let goal = grid[rows * columns - 1];
-let visualizer = setInterval(animate, 50);
+let visualizer = setInterval(animate, 20);
 let showMazeGeneration = true;
 let startTimerFlag = false;
 let clock;
