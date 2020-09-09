@@ -2,7 +2,7 @@ let current = grid[0];
 let stack = [];
 
 function MazeGenerator() {
-  cells[current.row * columns + current.column].style.background = "rgb(0, 255, 255)"
+  cells[current.row * columns + current.column].style.background = "rgb(102, 179, 229)"
   if (!current.visited) {
     current.visited = true;
     stack.push(current);
