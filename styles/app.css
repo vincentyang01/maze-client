@@ -8,6 +8,8 @@ body {
   padding: 20px;
   margin: 0;
   text-align: center;
+  /* background: url(https://www.uml.edu/Images/Coronavirus%20image_opt_tcm18-323793.jpg?w=s);
+  background-size: cover; */
 }
 
 .row {
@@ -28,22 +30,22 @@ body {
 }
 
 #overlay {
-  position: absolute;
+  height: 100%;
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.7);
 }
 
 #box-div {
+  box-sizing: border-box;
   max-width: 300px;
   margin: auto;
   padding: 20px;
   background: rgb(0, 45, 114);
-  margin-top: 10%;
-  display: inline-block;
+  margin-top: 20%;
   border-radius: 5px;
   color: rgb(255, 89, 16);
   /* vertical-align: middle;
@@ -59,14 +61,41 @@ input {
   border: 2px solid;
   border-radius: 4px;
   font-size: 15px;
+  text-align: center;
 }
 
 button {
   font-size: 15px;
+  font-weight: bolder;
   padding: 5px;
   margin: 5px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  color: #fff;
+  background: rgb(93, 102, 111);
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2b2b2b;
 }
 
 .navbar {
   margin-bottom: 1%;
+}
+
+.generator {
+  background: rgb(0, 45, 114);
+}
+
+.generator:hover {
+  background: rgb(255, 89, 16);
+}
+
+[data-id="no"] {
+  background: rgb(255, 89, 16);
+}
+
+[data-id="no"]:hover {
+  background: rgb(0, 45, 114);
 }
