@@ -45,9 +45,13 @@ btn.addEventListener("click", function () {
 
 let generator = document.querySelector(".generator");
 generator.addEventListener("click", function () {
-  if (generator.textContent.includes("Yes"))
+  if (generator.textContent.includes("Yes")) {
+    generator.dataset.id = 'no';
     generator.textContent = "Not Now";
-  else generator.textContent = "Heck Yes!";
+  } else {
+    generator.dataset.id = 'yes';
+    generator.textContent = "Heck Yes!";
+  }
   showMazeGeneration = !showMazeGeneration;
 });
 
