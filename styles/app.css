@@ -105,10 +105,16 @@ button {
   color: #fff;
   background: rgb(93, 102, 111);
   cursor: pointer;
+  box-shadow: 0 1px #999;
 }
 
 button:hover {
   background: #2b2b2b;
+}
+
+button:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(2px);
 }
 
 .navbar {
