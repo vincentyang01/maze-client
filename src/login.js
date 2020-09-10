@@ -4,18 +4,20 @@ const createOverlayForm = () => {
 
     overlayDiv.innerHTML = `
     <div id="box-div">
-        <h2>Maze Game</h2>
+        <h2>COVID Cure</h2>
         <br>
         <hr>
         <br>
         <h3>Welcome to a Maze Generating Game</h3>
         <br>
-        <p>Please enter your username below and enjoy!</p>
+        <p>Please enter your username below and bring the vaccine to the virus!</p>
         <br>
         <div id="form-div"></div>
         <br>
         <p>Created by:</p>
         <p>Vincent Yang & Jake Mills</p>
+        <br>
+        <p>#wearamask</p>
     </div>
     `
 
