@@ -1,5 +1,7 @@
 const rows = Math.floor((window.innerHeight / 40) - 5)
 const columns = Math.floor((window.innerWidth / 40) - 10)
+// const rows = 3
+// const columns = 3
 let grid = [];
 
 class Cell {
@@ -55,11 +57,12 @@ function makeGrid() {
 }
 
 const createMazeRowAndColDivs = () => {
+  const mazeDiv = document.querySelector('#maze')
   for (let y = 0; y < rows; y++) {
     let row = document.createElement('div');
     row.classList.add('row');
     if (y === 0) row.classList.add('top-row');
-    document.body.appendChild(row);
+    mazeDiv.appendChild(row);
 
     for (let x = 0; x < columns; x++) {
       let column = document.createElement('div');

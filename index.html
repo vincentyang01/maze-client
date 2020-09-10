@@ -6,24 +6,39 @@
   <title>Mod 3 Project</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div id="overlay"></div>
-  <h1 id="current-user"></h1>
-  <h2 id="max-score"></h2>
-  <h3 id="total-score"></h3>
-  <h4 id="games-played"></h4>
-  <div class="navbar">
-    <button class="generate-maze">Generate New Maze</button>
-    <br><br>
-    <div class="visualize-maze">
+  <div class="container">
+    <div class="col">
+      <h3 id="max-score"></h3>
+    </div>
+    <div class="col">
+      <h1 id="current-user"></h1>
+    </div>
+    <div class="col">
+      <h3 id="total-score"></h3>
+      <h3 id="games-played"></h3>
+    </div>
+  </div>
+  <div id="time-container">
+    <h3>Time Left:</h3>
+    <div id="timer">60s</div>
+  </div>
+  <div id="maze"></div>
+  <div class="btn-container">
+    <span></span>
+    <div class="nav-col">
+      <button class="generate-maze">Generate New Maze</button>
+    </div>
+    <span></span>
+    <div class="nav-col">
       <p>Visualize Maze Generator?</p>
       <button class="generator">Heck Yes!</button>
     </div>
-    <div id="timer">60s</div>
   </div>
 
 
