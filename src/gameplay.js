@@ -8,21 +8,32 @@ const vaccine = `
   <i class="fas fa-prescription"></i>
 </span>
 `;
+const vile = `
+<span style="font-size: 25px">
+<i class="fas fa-vial" data-points="1" data-collected="false" display="block"></i>
+</span>
+`
 let play = false;
 let goal = grid[rows * columns - 1];
-let visualizer = setInterval(animate, 50);
+let visualizer = setInterval(animate, 20);
 let showMazeGeneration = true;
 let startTimerFlag = false;
 let clock;
+let vialLocation = []
+let vialsBeenAt = []
+let vileCount = 0
 let user = document.getElementById("current-user")
 let maxScore = document.getElementById("max-score")
 let gamesPlayed = document.getElementById("games-played")
 let totalScore = document.getElementById("total-score")
+let totalViles = document.getElementById("total-viles")
+let roundtwo = false
 
 let btn = document.querySelector(".generate-maze");
 btn.addEventListener("click", function () {
   clearInterval(visualizer);
   resetTimer()
+  vileCount = 0;
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       cells[i * columns + j].removeAttribute("style");
@@ -34,7 +45,11 @@ btn.addEventListener("click", function () {
   current = grid[0];
   stack = [];
   play = false;
+  vialsBeenAt = []
+  roundtwo = false
+  clearTimeout(clock)
   goal = grid[rows * columns - 1];
+  vileLocation = []
   if (showMazeGeneration) visualizer = setInterval(animate, 20);
   else {
     while (!play) {
@@ -43,11 +58,15 @@ btn.addEventListener("click", function () {
   }
 });
 
-let checkbox = document.querySelector(".checkbox");
-checkbox.addEventListener("click", function () {
-  if (checkbox.innerHTML.includes("check"))
-    checkbox.innerHTML = `<i class="fas fa-times"></i>`;
-  else checkbox.innerHTML = `<i class="fas fa-check"></i>`;
+let generator = document.querySelector(".generator");
+generator.addEventListener("click", function () {
+  if (generator.textContent.includes("Yes")) {
+    generator.dataset.id = 'no';
+    generator.textContent = "Not Now";
+  } else {
+    generator.dataset.id = 'yes';
+    generator.textContent = "Heck Yes!";
+  }
   showMazeGeneration = !showMazeGeneration;
 });
 
@@ -76,20 +95,124 @@ function checkWin() {
 }
 
 function upArrowPressed() {
-  if (!current.walls[0]) current = grid[(current.row - 1) * columns + current.column];
+  if (!current.walls[0]) {
+    current = grid[(current.row - 1) * columns + current.column];
+  }
+  stepOnVile()
 }
 
 function leftArrowPressed() {
-  if (!current.walls[3]) current = grid[current.row * columns + (current.column - 1)];
+  if (!current.walls[3]) {
+    current = grid[current.row * columns + (current.column - 1)];
+  }
+  stepOnVile()
 }
 
 function rightArrowPressed() {
-  if (!current.walls[1]) current = grid[current.row * columns + (current.column + 1)];
+  if (!current.walls[1]) {
+    current = grid[current.row * columns + (current.column + 1)];
+  }
+  stepOnVile()
 }
 
 function downArrowPressed() {
-  if (!current.walls[2]) current = grid[(current.row + 1) * columns + current.column];
+  if (!current.walls[2]) {
+    current = grid[(current.row + 1) * columns + current.column];
+  }
+  stepOnVile()
 }
+
+
+
+
+
+function findViles(){
+  for(let i = 0; i < cells.length; i++){
+    if(cells[i].firstElementChild != null){
+      console.log("inside findViles")
+      vileLocation.push(i)
+    }
+  }
+  console.log("pushing and popping") //, 24, 30 
+  //Loops over all cells and gets all locations into vileLocation array
+  if(roundtwo){
+    removeCurrentAndLast()
+  } else {
+    removeFirstAndLast()
+  }
+}
+
+function removeFirstAndLast() {
+  //Removes 0 and max for start and finish
+  vileLocation.shift()
+  vileLocation.pop()
+  console.log(`end of removeFirstAndLast ${vileLocation}`)
+}
+
+function removeCurrentAndLast(){
+  const index = vileLocation.indexOf(current)
+  if (index > -1) {
+    vileLocation.splice(index, 1)
+  }
+  vileLocation.pop()
+}
+
+
+
+
+
+function stepOnVile() {
+  let currentLocation //Current holds postion via col and row but not length 
+  if(current.row == 0){
+    currentLocation = current.column;
+  }
+  if(current.row > 0){
+    currentLocation = current.row * columns + current.column;
+  }
+  //Check each step if there is a vial 
+  //If the vial location is present in the array
+  //Store it for tracking in vialsBeenAt
+  //Removing it from the current list of locations in vileLocation
+  if(vileLocation.includes(currentLocation)){
+    console.log("Inside the includes for stepOnVial")
+    vialsBeenAt.push(currentLocation);
+
+    const index = vileLocation.indexOf(currentLocation);
+    if (index > -1) {
+      vileLocation.splice(index, 1);
+    }
+    cells[currentLocation].innerHTML = ""
+    //Change the flag to not be active
+    console.log("hit the vile")
+    console.log(`vileLocation length: ${vileLocation}`)
+    
+    checkVisited()
+  }
+  //Keep checking if the array is empty
+}
+function checkVisited() {
+  //If the array is empty
+  if(vileLocation.length < 1){
+    generateAdditionalVial()
+    console.log("Greetings!!")
+  }
+  console.log(`vilelocation array: ${vileLocation}`)
+}
+
+function generateAdditionalVial() {
+  let random = Math.floor(Math.random() * (cells.length - 3))
+  if(random < 1) random = 2
+  if(random > cells.length) random - 2
+  // debugger
+  cells[random].innerHTML = vile
+  roundtwo = true
+  findViles()
+}
+
+
+
+
+
 
 function resetTimer() {
   document.getElementById("timer").innerText = "60s"
@@ -107,17 +230,28 @@ function startTimer() {
       timer.innerText = time + "s"
     }
     if (time == 0) {
-      play = false
-      // btn.click()
+      ifTimeOut()
     }
   }, 1000)
+  
+}
+
+function ifTimeOut(){
+  
+  play = false
+  alert("You failed to reach the final line before time ran out. You have earned 0 vials.")
 }
 
 function stopTimer() {
   clearTimeout(clock)
   console.log("def here")
   packScore()
+  getFinalScore()
   newPlayer = true
+}
+
+function getFinalScore(){
+  alert(`You have collected ${vialsBeenAt.length} vials.`)
 }
 
 function packScore() {
@@ -141,7 +275,7 @@ function packScore() {
   if (time > max) {
     maxScore.innerText = `Your current high score is: ${time}`
   }
-  getNewMaxScore(userId)
+  // getNewMaxScore(userId)
   console.log("Is this reaching?")
 }
 
