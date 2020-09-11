@@ -129,16 +129,16 @@ function downArrowPressed() {
 
 
 
-function findViles(){
-  for(let i = 0; i < cells.length; i++){
-    if(cells[i].firstElementChild != null){
+function findViles() {
+  for (let i = 0; i < cells.length; i++) {
+    if (cells[i].firstElementChild != null) {
       console.log("inside findViles")
       vileLocation.push(i)
     }
   }
   console.log("pushing and popping") //, 24, 30 
   //Loops over all cells and gets all locations into vileLocation array
-  if(roundtwo){
+  if (roundtwo) {
     removeCurrentAndLast()
   } else {
     removeFirstAndLast()
@@ -152,7 +152,7 @@ function removeFirstAndLast() {
   console.log(`end of removeFirstAndLast ${vileLocation}`)
 }
 
-function removeCurrentAndLast(){
+function removeCurrentAndLast() {
   const index = vileLocation.indexOf(current)
   if (index > -1) {
     vileLocation.splice(index, 1)
@@ -166,17 +166,17 @@ function removeCurrentAndLast(){
 
 function stepOnVile() {
   let currentLocation //Current holds postion via col and row but not length 
-  if(current.row == 0){
+  if (current.row == 0) {
     currentLocation = current.column;
   }
-  if(current.row > 0){
+  if (current.row > 0) {
     currentLocation = current.row * columns + current.column;
   }
   //Check each step if there is a vial 
   //If the vial location is present in the array
   //Store it for tracking in vialsBeenAt
   //Removing it from the current list of locations in vileLocation
-  if(vileLocation.includes(currentLocation)){
+  if (vileLocation.includes(currentLocation)) {
     console.log("Inside the includes for stepOnVial")
     vialsBeenAt.push(currentLocation);
 
@@ -188,14 +188,15 @@ function stepOnVile() {
     //Change the flag to not be active
     console.log("hit the vile")
     console.log(`vileLocation length: ${vileLocation}`)
-    
+
     checkVisited()
   }
   //Keep checking if the array is empty
 }
+
 function checkVisited() {
   //If the array is empty
-  if(vileLocation.length < 1){
+  if (vileLocation.length < 1) {
     generateAdditionalVial()
     console.log("Greetings!!")
   }
@@ -204,8 +205,8 @@ function checkVisited() {
 
 function generateAdditionalVial() {
   let random = Math.floor(Math.random() * (cells.length - 3))
-  if(random < 1) random = 2
-  if(random > cells.length) random - 2
+  if (random < 1) random = 2
+  if (random > cells.length) random - 2
   // debugger
   cells[random].innerHTML = vile
   roundtwo = true
@@ -236,11 +237,11 @@ function startTimer() {
       ifTimeOut()
     }
   }, 1000)
-  
+
 }
 
-function ifTimeOut(){
-  
+function ifTimeOut() {
+
   play = false
   alert("You failed to reach the final line before time ran out. You have earned 0 vials.")
 }
@@ -263,8 +264,9 @@ const virusAnimation = () => {
   if (play) {
     createVirusBubble()
   }
-  
-function getFinalScore(){
+}
+
+function getFinalScore() {
   alert(`You have collected ${vialsBeenAt.length} vials.`)
 }
 
