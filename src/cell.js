@@ -1,5 +1,5 @@
-const rows = 5//Math.floor((window.innerHeight / 40) - 10)
-const columns = 5//Math.floor((window.innerWidth / 40) - 10)
+const rows = Math.floor((window.innerHeight / 40) - 10)
+const columns = Math.floor((window.innerWidth / 40) - 10)
 let grid = [];
 
 class Cell {

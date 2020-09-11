@@ -200,9 +200,10 @@ function checkVisited() {
 }
 
 function generateAdditionalVial() {
-  let random = Math.floor(Math.random() * cells.length)
+  let random = Math.floor(Math.random() * (cells.length - 3))
   if(random < 1) random = 2
   if(random > cells.length) random - 2
+  // debugger
   cells[random].innerHTML = vile
   roundtwo = true
   findViles()
