@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
   <link rel="stylesheet" href="./styles/app.css">
+  <link rel="stylesheet" href="./styles/virus.css">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 
@@ -25,29 +26,28 @@
       <h3 id="games-played"></h3>
     </div>
   </div>
-  <div id="time-container">
-    <h3>Time Left:</h3>
-    <div id="timer">60s</div>
-  </div>
-  <div id="maze"></div>
   <div class="btn-container">
-    <span></span>
     <div class="nav-col">
       <button class="generate-maze">Generate New Maze</button>
     </div>
-    <span></span>
+    <div class="nav-col" id="time-container">
+      <h3>Time Left:</h3>
+      <div id="timer">60s</div>
+    </div>
     <div class="nav-col">
       <p>Visualize Maze Generator?</p>
       <button class="generator">Heck Yes!</button>
     </div>
   </div>
+  <div id="maze"></div>
 
 
 </body>
-<script type="text/javascript" src="./src/login.js"></script>
-<script type="text/javascript" src="./src/fetchAdapter.js"></script>
+<script type="text/javascript" src="./src/login.js" defer></script>
+<script type="text/javascript" src="./src/fetchAdapter.js" defer></script>
 <script type="text/javascript" src="./src/cell.js" defer></script>
 <script type="text/javascript" src="./src/maze-generator.js" defer></script>
+<script type="text/javascript" src="./src/animation.js" defer></script>
 <script type="text/javascript" src="./src/gameplay.js" defer></script>
 
 </html>

@@ -1,5 +1,3 @@
-const h1 = document.getElementById("current-user")
-
 class FetchAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
@@ -41,13 +39,6 @@ function findOrCreateBy(input) {
 
 ////////////////////////////////////////////////////////////////
 
-function renderUser(success) {
-    h1.innerText = success.name
-    h1.dataset.id = success.user_id
-}
-
-////////////////////////////////////////////////////////////////
-
 function sendScore(time, id) {
 
     const options = {
@@ -61,7 +52,7 @@ function sendScore(time, id) {
             value: time
         })
     }
-    console.log(`sending score ${time}`)
+    console.log(`sending score ${time} to user ${id}`)
     fetch("http://localhost:3000/scores", options)
 }
 
@@ -88,18 +79,6 @@ function patchTotalPoints(time, id, totalScore) {
 
 ////////////////////////////////////////////////////////////////
 
-function getNewMaxScore(id) {
-
-    fetch("http://localhost:3000/scores/maxscore/" + `${id}`)
-        .then(res => res.json())
-        .then(hello => {
-            console.log("in patch newmax")
-            renderNewMaxScore(hello.value)
-        })
-}
-
-////////////////////////////////////////////////////////////////
-
 function searchMaxScore(id) {
     fetch("http://localhost:3000/scores/maxscore/" + `${id}`)
         .then(res => res.json())
@@ -116,7 +95,7 @@ function searchGamesPlayed(id) {
     fetch("http://localhost:3000/scores/totalgames/" + `${id}`)
         .then(res => res.json())
         .then(Success => {
-            console.log("response in searchTotalScore")
+            console.log("response in searchGamesPlayed")
             console.log(Success.value)
             renderGamesPlayed(Success.value)
         })
