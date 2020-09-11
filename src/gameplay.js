@@ -57,7 +57,10 @@ generator.addEventListener("click", function () {
 
 document.body.addEventListener("keydown", function (e) {
   if (play && overlay.style.display == "none") {
-
+    if ([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault();
+      virusAnimation();
+    }
     cells[current.row * columns + current.column].innerHTML = ``;
     if (!startTimerFlag) {
       startTimer()
@@ -117,11 +120,22 @@ function startTimer() {
   }, 1000)
 }
 
+function renderUser(success) {
+  user.innerText = success.name
+  user.dataset.id = success.user_id
+}
+
 function stopTimer() {
   clearTimeout(clock)
   console.log("def here")
   packScore()
   newPlayer = true
+}
+
+const virusAnimation = () => {
+  if (play) {
+    createVirusBubble()
+  }
 }
 
 function packScore() {
@@ -145,8 +159,7 @@ function packScore() {
   if (time > max) {
     maxScore.innerText = `Your current high score is: ${time}`
   }
-  // getNewMaxScore(userId)
-  // console.log("Is this reaching?")
+  findOrCreateBy((user.innerText))
 }
 
 
