@@ -2,6 +2,8 @@ let current = grid[0];
 let stack = [];
 let vileLocation = [];
 
+
+
 function MazeGenerator() {
   cells[current.row * columns + current.column].style.background = "rgb(102, 179, 229)"
   if (!current.visited) {
@@ -81,3 +83,4 @@ function animate() {
   }
   MazeGenerator();
 }
+

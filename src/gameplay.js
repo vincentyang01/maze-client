@@ -45,6 +45,7 @@ btn.addEventListener("click", function () {
   current = grid[0];
   stack = [];
   play = false;
+  vialsBeenAt = []
   roundtwo = false
   clearTimeout(clock)
   goal = grid[rows * columns - 1];
@@ -174,7 +175,7 @@ function stepOnVile() {
   //Removing it from the current list of locations in vileLocation
   if(vileLocation.includes(currentLocation)){
     console.log("Inside the includes for stepOnVial")
-    // vialsBeenAt.push(currentLocation);
+    vialsBeenAt.push(currentLocation);
 
     const index = vileLocation.indexOf(currentLocation);
     if (index > -1) {
@@ -228,16 +229,28 @@ function startTimer() {
       timer.innerText = time + "s"
     }
     if (time == 0) {
-      play = false
+      ifTimeOut()
     }
   }, 1000)
+  
+}
+
+function ifTimeOut(){
+  
+  play = false
+  alert("You failed to reach the final line before time ran out. You have earned 0 vials.")
 }
 
 function stopTimer() {
   clearTimeout(clock)
   console.log("def here")
   packScore()
+  getFinalScore()
   newPlayer = true
+}
+
+function getFinalScore(){
+  alert(`You have collected ${vialsBeenAt.length} vials.`)
 }
 
 function packScore() {
