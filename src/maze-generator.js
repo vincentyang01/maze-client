@@ -1,5 +1,8 @@
 let current = grid[0];
 let stack = [];
+let vileLocation = [];
+
+
 
 function MazeGenerator() {
   cells[current.row * columns + current.column].style.background = "rgb(102, 179, 229)"
@@ -46,8 +49,31 @@ function MazeGenerator() {
     cells[current.row * columns + current.column].style.background = "rgb(255, 89, 16)";
     cells[goal.row * columns + goal.column].innerHTML = virus;
     cells[current.row * columns + current.column].innerHTML = vaccine;
+    let random = Math.floor(Math.random() * cells.length)
+    if(random == 0) random = 1;
+    if(random == cells.length -1 ) random - 2;
+    cells[random].innerHTML = vile //Create a vial
+    generateVile() //On creation, generate a vial a second vial
   }
 }
+
+
+
+
+function generateVile() {
+  let random = Math.floor(Math.random() * cells.length)
+  if(random < 1) random = 2
+  if(random > cells.length) random - 2
+  cells[random].innerHTML = vile
+  //Generate the second vial
+  //Find locations of all the vials
+  findViles()
+  // }
+}
+
+
+
+
 
 function animate() {
   for (let i = 0; i < rows; i++) {
@@ -57,3 +83,4 @@ function animate() {
   }
   MazeGenerator();
 }
+
