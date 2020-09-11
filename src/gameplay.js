@@ -234,16 +234,11 @@ function startTimer() {
       timer.innerText = time + "s"
     }
     if (time == 0) {
-      ifTimeOut()
+      clearInterval(clock)
+      play = false
+      alert("You failed to reach the final line before time ran out. You have earned 0 vials.")
     }
   }, 1000)
-
-}
-
-function ifTimeOut() {
-
-  play = false
-  alert("You failed to reach the final line before time ran out. You have earned 0 vials.")
 }
 
 function renderUser(success) {
@@ -277,20 +272,20 @@ function packScore() {
   sendScore(time, userId)
 
   patchTotalPoints(time, userId, totalScore);
-  let currString = totalScore.innerText.split(" ")
-  let num = parseInt(currString[3]) + time
-  totalScore.innerText = `Total score is: ${num}`
+  // let currString = totalScore.innerText.split(" ")
+  // let num = parseInt(currString[3]) + time
+  // totalScore.innerText = `Total score is: ${num}`
 
-  let gamesStr = gamesPlayed.innerText.split(" ")
-  let game = parseInt(gamesStr[4])
-  game++
-  gamesPlayed.innerText = `Number of games played: ${game}`
+  // let gamesStr = gamesPlayed.innerText.split(" ")
+  // let game = parseInt(gamesStr[4])
+  // game++
+  // gamesPlayed.innerText = `Number of games played: ${game}`
 
-  let maxScoreStr = maxScore.innerText.split(" ")
-  let max = parseInt(maxScoreStr[4])
-  if (time > max) {
-    maxScore.innerText = `Your current high score is: ${time}`
-  }
+  // let maxScoreStr = maxScore.innerText.split(" ")
+  // let max = parseInt(maxScoreStr[4])
+  // if (time > max) {
+  //   maxScore.innerText = `Your current high score is: ${time}`
+  // }
   findOrCreateBy((user.innerText))
 }
 
