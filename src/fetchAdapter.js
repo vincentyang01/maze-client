@@ -1,3 +1,6 @@
+const userUrl = "http://localhost:3000/users/"
+const scoreUrl = "http://localhost:3000/scores/"
+
 class FetchAdapter {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
@@ -23,7 +26,7 @@ function findOrCreateBy(input) {
             name: input
         })
     }
-    fetch("http://localhost:3000/users/findby", options)
+    fetch(userUrl + "findby", options)
         .then(res => res.json())
         .then(success => {
             console.log(success)
@@ -53,7 +56,7 @@ function sendScore(time, id) {
         })
     }
     console.log(`sending score ${time} to user ${id}`)
-    fetch("http://localhost:3000/scores", options)
+    fetch(scoreUrl, options)
 }
 
 ////////////////////////////////////////////////////////////////
@@ -74,13 +77,13 @@ function patchTotalPoints(time, id, totalScore) {
         })
     }
 
-    fetch("http://localhost:3000/users/" + `${id}`, options)
+    fetch(userUrl + `${id}`, options)
 }
 
 ////////////////////////////////////////////////////////////////
 
 function searchMaxScore(id) {
-    fetch("http://localhost:3000/scores/maxscore/" + `${id}`)
+    fetch(scoreUrl + "maxscore/" + `${id}`)
         .then(res => res.json())
         .then(Success => {
             console.log("response in searchMaxScore")
@@ -92,7 +95,7 @@ function searchMaxScore(id) {
 ////////////////////////////////////////////////////////////////
 
 function searchGamesPlayed(id) {
-    fetch("http://localhost:3000/scores/totalgames/" + `${id}`)
+    fetch(scoreUrl + "totalgames/" + `${id}`)
         .then(res => res.json())
         .then(Success => {
             console.log("response in searchGamesPlayed")
@@ -104,7 +107,7 @@ function searchGamesPlayed(id) {
 ////////////////////////////////////////////////////////////////
 
 function searchTotalScore(id) {
-    fetch("http://localhost:3000/users/" + `${id}`)
+    fetch(userUrl + `${id}`)
         .then(res => res.json())
         .then(Success => {
             console.log("Inside searchTotalScore")
@@ -112,3 +115,13 @@ function searchTotalScore(id) {
             renderTotalScore(Success.value)
         })
 }
+
+////////////////////////////////////////////////////////////////
+
+const getHighScores = () => {
+    fetch(userUrl)
+        .then(res => res.json())
+        .then(renderHighScores)
+}
+
+getHighScores()

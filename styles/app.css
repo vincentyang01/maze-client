@@ -130,3 +130,10 @@ button:active {
 [data-id="no"]:hover {
   background: rgb(0, 45, 114);
 }
+
+.maze-container {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-areas:
+    "maze scores"
+}
