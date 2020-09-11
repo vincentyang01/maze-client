@@ -275,15 +275,12 @@ function packScore() {
   if (time > max) {
     maxScore.innerText = `Your current high score is: ${time}`
   }
-  // getNewMaxScore(userId)
-  console.log("Is this reaching?")
 }
 
 
 function renderNewMaxScore(newHighscore) {
   console.log(`we here ${newHighscore}`)
   maxScore.innerText = `Your current high score: ${newHighscore}`
-
 }
 
 
