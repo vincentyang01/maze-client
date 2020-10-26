@@ -1,4 +1,4 @@
-const rows = Math.floor((window.innerHeight / 40) - 5)
+const rows = Math.floor((window.innerHeight / 40) - 4)
 const columns = Math.floor((window.innerWidth / 40) - 15)
 // const rows = 3
 // const columns = 3

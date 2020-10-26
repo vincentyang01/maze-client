@@ -132,7 +132,7 @@ button:active {
 }
 
 .maze-container {
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 75% 25%;
   grid-template-areas:
     "maze scores"

@@ -29,7 +29,6 @@ function findOrCreateBy(input) {
     fetch(userUrl + "findby", options)
         .then(res => res.json())
         .then(success => {
-            console.log(success)
             overlay.style.display = "none"
             renderUser(success)
             let id = success.user_id
@@ -42,7 +41,7 @@ function findOrCreateBy(input) {
 
 ////////////////////////////////////////////////////////////////
 
-function sendScore(time, id) {
+function sendScore(score, id) {
 
     const options = {
         method: "POST",
@@ -52,19 +51,18 @@ function sendScore(time, id) {
         },
         body: JSON.stringify({
             user_id: id,
-            value: time
+            value: score
         })
     }
-    console.log(`sending score ${time} to user ${id}`)
     fetch(scoreUrl, options)
 }
 
 ////////////////////////////////////////////////////////////////
 
-function patchTotalPoints(time, id, totalScore) {
+function patchTotalPoints(score, id, totalScore) {
     let currString = totalScore.innerText.split(" ")
     currPoints = parseInt(currString[3])
-    currPoints += time
+    currPoints += score
     const options = {
         method: "PATCH",
         headers: {
@@ -86,8 +84,6 @@ function searchMaxScore(id) {
     fetch(scoreUrl + "maxscore/" + `${id}`)
         .then(res => res.json())
         .then(Success => {
-            console.log("response in searchMaxScore")
-            console.log(Success.value)
             renderMaxScore(Success.value)
         })
 }
@@ -98,8 +94,6 @@ function searchGamesPlayed(id) {
     fetch(scoreUrl + "totalgames/" + `${id}`)
         .then(res => res.json())
         .then(Success => {
-            console.log("response in searchGamesPlayed")
-            console.log(Success.value)
             renderGamesPlayed(Success.value)
         })
 }
@@ -110,8 +104,6 @@ function searchTotalScore(id) {
     fetch(userUrl + `${id}`)
         .then(res => res.json())
         .then(Success => {
-            console.log("Inside searchTotalScore")
-            console.log(Success.value)
             renderTotalScore(Success.value)
         })
 }

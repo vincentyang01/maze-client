@@ -65,7 +65,6 @@ function generateVile() {
   if(random < 1) random = 2
   if(random > cells.length) random - 2
   cells[random].innerHTML = vile
-  //Generate the second vial
   //Find locations of all the vials
   findViles()
   // }

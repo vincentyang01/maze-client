@@ -91,7 +91,6 @@ document.body.addEventListener("keydown", function (e) {
 
 function checkWin() {
   if (current === goal) {
-    console.log("WON");
     play = false;
     stopTimer()
   }
@@ -132,11 +131,9 @@ function downArrowPressed() {
 function findViles() {
   for (let i = 0; i < cells.length; i++) {
     if (cells[i].firstElementChild != null) {
-      console.log("inside findViles")
       vileLocation.push(i)
     }
   }
-  console.log("pushing and popping") //, 24, 30 
   //Loops over all cells and gets all locations into vileLocation array
   if (roundtwo) {
     removeCurrentAndLast()
@@ -149,7 +146,6 @@ function removeFirstAndLast() {
   //Removes 0 and max for start and finish
   vileLocation.shift()
   vileLocation.pop()
-  console.log(`end of removeFirstAndLast ${vileLocation}`)
 }
 
 function removeCurrentAndLast() {
@@ -177,7 +173,6 @@ function stepOnVile() {
   //Store it for tracking in vialsBeenAt
   //Removing it from the current list of locations in vileLocation
   if (vileLocation.includes(currentLocation)) {
-    console.log("Inside the includes for stepOnVial")
     vialsBeenAt.push(currentLocation);
 
     const index = vileLocation.indexOf(currentLocation);
@@ -186,9 +181,6 @@ function stepOnVile() {
     }
     cells[currentLocation].innerHTML = ""
     //Change the flag to not be active
-    console.log("hit the vile")
-    console.log(`vileLocation length: ${vileLocation}`)
-
     checkVisited()
   }
   //Keep checking if the array is empty
@@ -198,16 +190,13 @@ function checkVisited() {
   //If the array is empty
   if (vileLocation.length < 1) {
     generateAdditionalVial()
-    console.log("Greetings!!")
   }
-  console.log(`vilelocation array: ${vileLocation}`)
 }
 
 function generateAdditionalVial() {
   let random = Math.floor(Math.random() * (cells.length - 3))
   if (random < 1) random = 2
   if (random > cells.length) random - 2
-  // debugger
   cells[random].innerHTML = vile
   roundtwo = true
   findViles()
@@ -230,7 +219,6 @@ function startTimer() {
   clock = setInterval(function () {
     if (time > 0) {
       time -= 1
-      console.log(time)
       timer.innerText = time + "s"
     }
     if (time == 0) {
@@ -248,7 +236,6 @@ function renderUser(success) {
 
 function stopTimer() {
   clearTimeout(clock)
-  console.log("def here")
   packScore()
   getFinalScore()
   newPlayer = true
@@ -269,29 +256,13 @@ function packScore() {
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
   let userId = parseInt(user.dataset.id)
-  sendScore(time, userId)
-
-  patchTotalPoints(time, userId, totalScore);
-  // let currString = totalScore.innerText.split(" ")
-  // let num = parseInt(currString[3]) + time
-  // totalScore.innerText = `Total score is: ${num}`
-
-  // let gamesStr = gamesPlayed.innerText.split(" ")
-  // let game = parseInt(gamesStr[4])
-  // game++
-  // gamesPlayed.innerText = `Number of games played: ${game}`
-
-  // let maxScoreStr = maxScore.innerText.split(" ")
-  // let max = parseInt(maxScoreStr[4])
-  // if (time > max) {
-  //   maxScore.innerText = `Your current high score is: ${time}`
-  // }
+  sendScore(vialsBeenAt.length, userId)
+  patchTotalPoints(vialsBeenAt.length, userId, totalScore);
   findOrCreateBy((user.innerText))
 }
 
 
 function renderNewMaxScore(newHighscore) {
-  console.log(`we here ${newHighscore}`)
   maxScore.innerText = `Your current high score: ${newHighscore}`
 }
 
