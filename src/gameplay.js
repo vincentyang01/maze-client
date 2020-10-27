@@ -269,9 +269,9 @@ function packScore() {
   let timer = document.getElementById("timer")
   let time = parseInt(timer.innerText)
   let userId = parseInt(user.dataset.id)
-  sendScore(time, userId)
+  sendScore(vialsBeenAt.length, userId)
 
-  patchTotalPoints(time, userId, totalScore);
+  patchTotalPoints(vialsBeenAt.length, userId, totalScore);
   // let currString = totalScore.innerText.split(" ")
   // let num = parseInt(currString[3]) + time
   // totalScore.innerText = `Total score is: ${num}`
