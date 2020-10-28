@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/vincentyang01/maze-client/issues"
   },
-  "homepage": "https://github.com/vincentyang01/maze-client#readme"
+  "homepage": "https://github.com/vincentyang01/maze-client#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
